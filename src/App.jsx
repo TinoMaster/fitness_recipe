@@ -1,34 +1,47 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { useEffect } from "react";
+import { useState } from "react";
+
+import { config } from "./configs/api.config";
+import { Layout } from "./layout";
+import { HashRouter, Route, Routes } from "react-router-dom";
+import { HomePage } from "./pages/Home Page";
+import { NutritionPage } from "./pages/Nutrition Page";
+import { FoodPage } from "./pages/Food Page";
+import { RecipePage } from "./pages/Recipes Page";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [ingredient, setIngredient] = useState("sugar");
+
+  /* useEffect(() => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+      },
+    };
+    fetch(
+      `${config.url}?app_id=${config.api_id}&app_key=${config.api_key}&nutrition-type=cooking&ingr=${ingredient}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
+  }, []); */
 
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    <section className="w-screen h-screen">
+      <HashRouter>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/nutrition" element={<NutritionPage />} />
+            <Route path="/food" element={<FoodPage />} />
+            <Route path="/recipe" element={<RecipePage />} />
+          </Routes>
+        </Layout>
+      </HashRouter>
+    </section>
+  );
 }
 
-export default App
+export default App;
