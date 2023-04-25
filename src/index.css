@@ -3,5 +3,5 @@
 @tailwind utilities;
 
 .link-menu {
-  @apply py-2 md:px-3 text-white hover:text-secondary hover:cursor-pointer transition-all;
+  @apply py-2 px-3 text-white font-serif hover:text-secondary hover:cursor-pointer transition-all;
 }
