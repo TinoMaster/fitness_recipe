@@ -5,3 +5,7 @@
 .link-menu {
   @apply py-2 px-3 text-white font-serif hover:text-secondary hover:cursor-pointer transition-all;
 }
+
+.inputAuth {
+  @apply w-full mx-auto border-b-2 placeholder:text-slate-300 text-primary my-2 py-1 px-7 focus:border-b-secondary/50 focus:outline-none;
+}

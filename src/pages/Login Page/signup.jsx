@@ -1,9 +1,9 @@
 import React from "react";
 
-export const NutritionPage = () => {
+export const Signup = () => {
   return (
     <div>
-      <h1>Nutrition Page</h1>
+      <h1>Signup</h1>
     </div>
   );
 };

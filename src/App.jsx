@@ -8,6 +8,9 @@ import { HomePage } from "./pages/Home Page";
 import { NutritionPage } from "./pages/Nutrition Page";
 import { FoodPage } from "./pages/Food Page";
 import { RecipePage } from "./pages/Recipes Page";
+import { LoginPage } from "./pages/Login Page";
+import { Login } from "./pages/Login Page/login";
+import { Signup } from "./pages/Login Page/signup";
 
 function App() {
   const [ingredient, setIngredient] = useState("sugar");
@@ -31,14 +34,20 @@ function App() {
   return (
     <section className="w-screen h-screen">
       <HashRouter>
-        <Layout>
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/nutrition" element={<NutritionPage />} />
-            <Route path="/food" element={<FoodPage />} />
-            <Route path="/recipe" element={<RecipePage />} />
-          </Routes>
-        </Layout>
+        <Routes>
+          {/* App Page */}
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="nutrition" element={<NutritionPage />} />
+            <Route path="food" element={<FoodPage />} />
+            <Route path="recipe" element={<RecipePage />} />
+          </Route>
+          {/* Login Page */}
+          <Route path="/auth" element={<LoginPage />}>
+            <Route index element={<Login />} />
+            <Route path="signup" element={<Signup />} />
+          </Route>
+        </Routes>
       </HashRouter>
     </section>
   );
