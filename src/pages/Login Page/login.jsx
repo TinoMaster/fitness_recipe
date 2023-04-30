@@ -15,7 +15,7 @@ export const Login = () => {
         Ingresar a su cuenta
       </h2>
 
-      <Link to={"/"} className="absolute top-5 left-5 bg-slate-100 p-2">
+      <Link to={"/"} className="absolute top-5 left-5 bg-slate-100 p-2 flex items-center text-primaryLight">
         <BsArrowLeft className="mr-2" />
         Volver a la pagina
       </Link>
@@ -78,7 +78,7 @@ export const Login = () => {
 
         <div className=" w-4/5 m-auto flex justify-between">
           <Link
-            to={"/auth/register"}
+            to={"/auth/signup"}
             className="text-sky-600 hover:cursor-pointer hover:text-sky-700 text-sm lg:text-base"
           >
             Crear nueva cuenta
@@ -89,7 +89,7 @@ export const Login = () => {
         </div>
 
         <input
-          value="Enviar"
+          value="Iniciar"
           type="button"
           className="my-5 p-2 w-2/3 m-auto bg-secondary/80 text-white rounded-lg shadow-md shadow-secondary/75 hover:cursor-pointer hover:bg-secondary/90"
         />

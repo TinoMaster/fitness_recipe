@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useState } from "react";
 
-import { config } from "./configs/api.config";
 import { Layout } from "./layout";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import { HomePage } from "./pages/Home Page";
