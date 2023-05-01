@@ -8,7 +8,7 @@ export const LoginPage = () => {
   const { error } = states;
   return (
     <div className="w-screen relative h-screen flex overflow-auto items-center justify-center bg-primary">
-      <div className="w-full h-full relative overflow-hidden min-h-movil md:w-2/6 md:h-128 flex max-w-lg flex-col justify-center items-center bg-white p-4 shadow-xl shadow-black/40 rounded-lg">
+      <div className="w-full h-full relative overflow-hidden md:w-2/6 md:h-auto min-h-[950px] flex max-w-lg flex-col justify-center items-center bg-white p-4 shadow-xl shadow-black/40 rounded-lg">
         {error !== null ? (
           <p className="absolute flex items-center z-20 bg-red-500/90 text-white font-semibold p-3 rounded-md top-20 transition-all ease-linear delay-700">
             <BiMessageRoundedError size={"26px"} className="mr-2" /> {error}

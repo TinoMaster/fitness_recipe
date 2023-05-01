@@ -8,7 +8,7 @@ import { Settings } from "./settings";
 
 function Menu() {
   return (
-    <div className="flex flex-wrap relative overflow-hidden bg-gradient-to-r from-primary to-primaryLight z-40 items-center w-full text-sm">
+    <div className="flex flex-wrap relative bg-gradient-to-r from-primary to-primaryLight z-40 items-center w-full text-sm">
       <div className="w-full flex relative justify-between">
         <BtnMenulogo />
 

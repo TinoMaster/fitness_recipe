@@ -1,6 +1,5 @@
 import { createContext, useState } from "react";
 import { config } from "../configs/db.config";
-import { useNavigate } from "react-router-dom";
 
 const USER_NAME = "USER_NAME";
 const ROL_USER = "ROL_USER_APP";
@@ -29,6 +28,11 @@ const AuthProvider = ({ children }) => {
     const { name, value } = e.target;
     setSignup({ ...signup, [name]: value });
   };
+  const handleLogin = (e) => {
+    setError(null);
+    const { name, value } = e.target;
+    setLogin({ ...login, [name]: value });
+  };
 
   /* validators */
   const validateSignup = () => {
@@ -49,6 +53,20 @@ const AuthProvider = ({ children }) => {
     }
     if (name.length < 3) {
       setError("El nombre debe tener al menos 3 caracteres");
+      return false;
+    }
+    const re = /\S+@\S+\.\S+/;
+    if (!re.test(email)) {
+      setError("El correo no es válido");
+      return false;
+    }
+    return true;
+  };
+  const validateLogin = () => {
+    setError(null);
+    const { email, password } = login;
+    if (!email || !password) {
+      setError("Todos los campos son obligatorios");
       return false;
     }
     const re = /\S+@\S+\.\S+/;
@@ -87,9 +105,56 @@ const AuthProvider = ({ children }) => {
     }
     return false;
   };
+  const loginUser = async (e) => {
+    e.preventDefault();
+    const validator = validateLogin();
+    if (validator) {
+      setLoading(true);
+      const { email, password } = login;
+      const url = `${config.URL}/${config.API}/user/login`;
+      const data = { email, password };
+      const options = {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" },
+      };
+      const response = await fetch(url, options);
+      const result = await response.json();
+      if (result.success) {
+        setError(null);
+        setLoading(false);
+        setUser(result.data);
+        await saveDataLocalStorage(result.data);
+        window.location.href = "#/";
+      } else if (result.error) {
+        setLoading(false);
+        setError(result.message);
+      }
+    }
+  };
+
+  /* helpers */
+  const saveDataLocalStorage = (data) => {
+    localStorage.setItem(USER_NAME, JSON.stringify(data.name));
+    localStorage.setItem(ROL_USER, JSON.stringify(data.role));
+    localStorage.setItem(MY_AUTH_TOKEN, JSON.stringify(data.token));
+  };
+  const logout = () => {
+    localStorage.removeItem(USER_NAME);
+    localStorage.removeItem(ROL_USER);
+    localStorage.removeItem(MY_AUTH_TOKEN);
+    setUser(initialUser);
+    window.location.href = "#/";
+  };
 
   const states = { user, signup, error, loading };
-  const functions = { handleSignup, signupUser };
+  const functions = {
+    handleSignup,
+    handleLogin,
+    signupUser,
+    loginUser,
+    logout,
+  };
   const data = { states, functions };
   return <AuthContext.Provider value={data}>{children}</AuthContext.Provider>;
 };

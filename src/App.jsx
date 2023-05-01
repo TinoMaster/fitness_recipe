@@ -31,7 +31,7 @@ function App() {
   }, []); */
 
   return (
-    <section className="w-screen h-screen">
+    <section className="w-screen h-screen overflow-hidden">
       <HashRouter>
         <Routes>
           {/* App Page */}
