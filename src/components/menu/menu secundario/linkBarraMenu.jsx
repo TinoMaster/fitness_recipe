@@ -1,30 +1,57 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AiFillHome } from "react-icons/ai";
 import { motion } from "framer-motion";
+import AppContext from "../../../contexts/AppContext";
+
+const links = [
+  {
+    name: "Home",
+    path: "/",
+    hash: "",
+    icon: <AiFillHome size={28} />,
+  },
+  {
+    name: "Nutrition",
+    path: "/nutrition",
+    hash: "nutrition",
+  },
+  {
+    name: "Foods",
+    path: "/food",
+    hash: "food",
+  },
+  {
+    name: "Recipe",
+    path: "/recipe",
+    hash: "recipe",
+  },
+];
 
 export const LinkBarraMenu = () => {
+  const { states_App } = useContext(AppContext);
+  const { currentRoute, setCurrentRoute } = states_App;
   return (
     <div className="flex w-full">
-      <motion.ul
-        initial={{ opacity: 0, x: "-100vw" }}
-        animate={{ opacity: 1, x: 0 }}
-        /* transition={{ duration: 0.5 }} */
-        className="flex w-full justify-center items-center"
-      >
-        <Link className="link-menu" to={"/"}>
-          <AiFillHome size={"28px"} />
-        </Link>
-        <Link className="link-menu" to={"/nutrition"}>
-          Nutricion
-        </Link>
-        <Link className="link-menu" to={"/food"}>
-          Alimentos
-        </Link>
-        <Link className="link-menu" to={"/recipe"}>
-          Recetas
-        </Link>
-      </motion.ul>
+      <ul className="flex w-full justify-center items-center">
+        {links.map((link) => (
+          <div key={link.name} className="">
+            <Link
+              onClick={() => setCurrentRoute(link.hash)}
+              to={link.path}
+              className="flex relative py-2 px-3 justify-center text-lightMode items-center font-serif hover:text-secondary hover:cursor-pointer transition-all"
+            >
+              {currentRoute === link.hash && (
+                <motion.div
+                  layoutId="active-linkMenu"
+                  className="absolute w-full h-full bg-white rounded-md rounded-tr-sm rounded-bl-sm"
+                ></motion.div>
+              )}
+              <p className={`z-10 ${currentRoute === link.hash ?"text-primaryLight":""}`}>{link?.icon ? link.icon : link.name}</p>
+            </Link>
+          </div>
+        ))}
+      </ul>
     </div>
   );
 };
