@@ -10,6 +10,9 @@ import { RecipePage } from "./pages/Recipes Page";
 import { LoginPage } from "./pages/Login Page";
 import { Login } from "./pages/Login Page/login";
 import { Signup } from "./pages/Login Page/signup";
+import { FitnessPage } from "./pages/fitness";
+import { HealthPage } from "./pages/health";
+import { BlogPage } from "./pages/blog";
 
 function App() {
   const [ingredient, setIngredient] = useState("sugar");
@@ -37,6 +40,9 @@ function App() {
           {/* App Page */}
           <Route path="/" element={<Layout />}>
             <Route index element={<HomePage />} />
+            <Route path="fitness" element={<FitnessPage />} />
+            <Route path="health" element={<HealthPage />} />
+            <Route path="blog" element={<BlogPage />} />
             <Route path="nutrition" element={<NutritionPage />} />
             <Route path="food" element={<FoodPage />} />
             <Route path="recipe" element={<RecipePage />} />

@@ -22,9 +22,14 @@ export const LoginLogout = () => {
     <div className="flex items-center pl-2 hover:cursor-pointer">
       <div className="mr-2 text-white">
         {user?.name?.length > 0 ? (
-          <div
+          <motion.div
             onClick={toggleMenu}
-            className="p-2 relative rounded-full shadow-md bg-lightMode shadow-black/20 text-primaryLight hover:shadow-black/30 hover:bg-lightMode/90 transition-all"
+            whileHover={{
+              scale: 1.1,
+              boxShadow: "0px 0px 8px rgb(255,255,255)",
+            }}
+            transition={{ duration: 0.2, type: "spring", stiffness: 500 }}
+            className="p-2 relative rounded-full z-40 shadow-md bg-lightMode shadow-black/20 text-primaryLight"
           >
             <RiUser6Line size={"20px"} />
             {/* Menu deslizable */}
@@ -59,7 +64,7 @@ export const LoginLogout = () => {
                 </p>
               </motion.div>
             )}
-          </div>
+          </motion.div>
         ) : (
           <Link
             to="/auth"

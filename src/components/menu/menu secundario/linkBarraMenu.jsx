@@ -12,19 +12,19 @@ const links = [
     icon: <AiFillHome size={28} />,
   },
   {
-    name: "Nutrition",
-    path: "/nutrition",
-    hash: "nutrition",
+    name: "Fitness",
+    path: "/fitness",
+    hash: "fitness",
   },
   {
-    name: "Foods",
-    path: "/food",
-    hash: "food",
+    name: "Health",
+    path: "/health",
+    hash: "health",
   },
   {
-    name: "Recipe",
-    path: "/recipe",
-    hash: "recipe",
+    name: "Blog",
+    path: "/blog",
+    hash: "blog",
   },
 ];
 
